@@ -1,6 +1,5 @@
-
 ----------------------------------
---AULA 23/05/25
+--AULA 26/05/25
 ----------------------------------
 USE INTERCAMBIOCJ3028607;
 GO
@@ -170,11 +169,61 @@ SET @maior = @B;
 PRINT 'O maior valor é: ' + CAST(@maior AS VARCHAR);
 GO
 
-DECLARE @numero AS INT = 240,
-
+DECLARE @numero AS INT = 240;
 
 IF ((@numero % 2) =0)
 PRINT 'O número ' + CAST(@numero AS VARCHAR) + 'é par!';
 ELSE 
 PRINT 'O número ' + CAST(@numero AS VARCHAR) + 'é impar!';
+GO
+
+
+----------------------------------
+--AULA 02/06/25
+----------------------------------
+
+SELECT	CodAluno	AS 'Código',
+		NomeAluno	AS 'Nome do Aluno',
+		Endereco	AS 'Endereço',
+		Genero		AS 'Gênero',
+		CASE Genero	
+			WHEN 'M' THEN 'Homem'
+			WHEN 'F' THEN 'Mulher'
+			ELSE 'Não declarado'
+		END AS 'Homem | Mulher'
+FROM ALUNOS;
+GO
+
+DECLARE @i AS INT;
+
+SET @i = 1;
+
+WHILE @i <= 10
+	BEGIN
+		PRINT 'Valor de i: ' + CAST(@i AS CHAR);
+		SET @i = @i + 1;
+	END;
+GO
+
+DECLARE	@quantidade	AS INT = 5,
+		@total		AS INT = 1,
+		@contador	AS INT,
+		@limite		AS INT = 10;
+
+WHILE @total <= @quantidade
+	BEGIN
+		PRINT 'Tabuada do ' + CAST(@total AS VARCHAR(5));
+		PRINT REPLICATE('-', 13);
+		SET @contador = 0;
+
+		WHILE @contador <= @limite
+			BEGIN
+				PRINT CAST (@total AS VARCHAR(5)) + 'X' + CAST(@contador AS VARCHAR(5)) + ' = ' + CAST ((@total * @contador) AS VARCHAR(5));
+				SET @contador += 1;
+			END;
+
+		SET @total += 1;
+
+		PRINT '';
+	END;
 GO
